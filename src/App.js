@@ -19,7 +19,7 @@ class App extends Component {
     this.handleClick = this.handleClick.bind(this)
     this.addToFavorites = this.addToFavorites.bind(this)
     this.deleteFavs = this.deleteFavs.bind(this)
-    // this.editQuote = this.editQuote.bind(this)
+    this.editQuote = this.editQuote.bind(this)
     // this.handleChuck = this.handleChuck.bind(this)
   }
 
@@ -27,6 +27,10 @@ class App extends Component {
     axios.get('/api/test').then(response => {
       console.log("front end data", response)
       this.setState({ quotes: response.data.quotes })
+    })
+    axios.get('/api/favorites').then(response => {
+      console.log(response, " front end data for favorites")
+      this.setState({ favorites: response.data })
     })
   }
 
@@ -49,6 +53,15 @@ class App extends Component {
       this.setState({ favorites: response.data })
     })
   }
+
+  editQuote(id, edit) {
+    console.log('Favorites editquote func', id, edit)
+    axios.put(`/api/editQuote/${id}`, { edit }).then(response => {
+      console.log(response.data);
+      this.setState({ favorites: response.data })
+    })
+  }
+
 
 
 

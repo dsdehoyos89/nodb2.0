@@ -31,16 +31,27 @@ function deleteFav(req, res) {
 }
 
 function editQuote(req, res) {
-    let editId = req.params.id;
-    if (editId == favorites[0].id) {
-        favorites[0].body = req.body.newQuote
-        // Object.assign(favorites[0].id, req.body.newQuote)
+    console.log(req.body, req.params)
+    // let editId = req.params.id;
+    // if (editId == favorites[0].id) {
+    //     favorites[0].body = req.body.newQuote
+
+    // }
+    let editId = parseInt(req.params.id);
+    let index = favorites.findIndex((quotes) => quotes.id === editId);
+    console.log("editQuote in ctrl", index)
+    console.log(favorites, "favories iin editquote")
+    if (index >= 0) {
+        favorites[index].body = req.body.edit
     }
-    console.log(favorites[0].id, "Favorite ID");
-    console.log(req.params.id, "Edit ID");
-    console.log(req.body.newQuote, "New Quote");
-    console.log(favorites, "Favorites")
+
+
+
     res.status(200).json(favorites);
+}
+
+function getFavorites(req, res) {
+    res.status(200).json(favorites)
 }
 
 
@@ -55,5 +66,6 @@ module.exports = {
     getQuote,
     addFav,
     deleteFav,
-    editQuote
+    editQuote,
+    getFavorites
 };
