@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import QuoteCard from './components/QuoteCard';
 import Favorites from './components/Favorites';
-import ChuckNorris from './components/ChuckNorris'
+import Signature from './components/Signature'
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       quotes: [],
-      favorites: []
-
-      // jokes: []
+      favorites: [],
+      jokes: []
 
     }
     this.handleClick = this.handleClick.bind(this)
@@ -63,18 +61,21 @@ class App extends Component {
   }
 
 
+  handleEasterEgg() {
+    axios.get('https://api.chucknorris.io/jokes/random').then(response => {
+      // console.log('joke', response.data.value)
+      alert(response.data.value)
+    })
+  }
 
 
 
 
 
 
-  // handleChuck() {
-  //   axios.get('https://api.chucknorris.io/jokes/random').then(response => {
-  //     console.log(response.data.value, "CHuck")
-  //     this.setState({ jokes: response.data.value })
-  //   })
-  // }
+
+
+
 
 
 
@@ -85,18 +86,23 @@ class App extends Component {
 
     let quotesMap = this.state.quotes.map((quote, index) => {
       return (
-        <div className="quoteCard">
-          <QuoteCard
+        <div className="main-container">
+          <div className="quoteCard">
+            <QuoteCard
 
-            quote={quote}
+              quote={quote}
 
-            key={index}
-          // addFav={this.addToFavorites}
-          />
-          <button onClick={() => this.addToFavorites(quote)}>Add to Favorites</button>
+              key={index}
+            // addFav={this.addToFavorites}
+            />
+            <button onClick={() => this.addToFavorites(quote)}>Add to Favorites</button>
+          </div>
         </div>
+
       )
+
     })
+
 
     return (
 
@@ -105,6 +111,10 @@ class App extends Component {
           <h2>QuoteBook</h2>
 
           <button onClick={this.handleClick}>More</button>
+          <div className="sig">
+            <Signature
+              egg={this.handleEasterEgg} />
+          </div>
         </header>
         {quotesMap}
 
@@ -120,15 +130,11 @@ class App extends Component {
             edit={this.editQuote}
             quotes={this.state.quotes}
           />
-          {/* <div>
-            <ChuckNorris
-              clicky={this.handleChuck}
-              jokes={this.state.jokes}
-
+          <div className="sig2">
+            <Signature
+              egg={this.handleEasterEgg}
             />
-
-          </div> */}
-
+          </div>
 
         </div>
 

@@ -16,11 +16,11 @@ class SingleFav extends Component {
 
     render() {
         return (
-            <div className="quoteCard">
+            <div className="favQuoteCard">
 
-                <h1>Quote</h1>
-                <h2>{this.props.quote.body}</h2>
-                <h3>-{this.props.quote.author}</h3>
+
+                <h1>{this.props.quote.body}</h1>
+                <h2>-{this.props.quote.author}</h2>
                 <button onClick={() => this.props.deleteBut(this.props.quote.id)}>Delete</button>
                 <button onClick={() => {
                     this.props.editBut(this.props.quote.id, this.state.edit)
