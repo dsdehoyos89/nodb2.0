@@ -8,7 +8,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -17,6 +17,34 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.topOpage{
+  background-color: #282c34;
+  color: white;
+  height: 50px;
+  border: 2px solid black;
+  font-size: 20px;
+  padding-bottom: 40px;
+  
+  
+}
+
+.topOpage > button{
+  position: absolute;
+  top:0px;
+  right: 0px;
+}
+
+.quoteCard{
+  border: 1px solid black;
+}
+
+.favHead{
+  font-size: 40px;
+  
+}
+
+
 
 .App-link {
   color: #61dafb;
